@@ -1,0 +1,8 @@
+from scipy.stats import ttest_ind  
+# Assuming you have correlation matrices for MS/HC groups  
+ms_matrix = np.load('ms_group_matrices.npy')  # Shape: (n_ms_patients, regions, regions)  
+hc_matrix = np.load('hc_group_matrices.npy')  
+tvals, pvals = ttest_ind(ms_matrix.mean(axis=0), hc_matrix.mean(axis=0), axis=0)  
+# Correct for multiple comparisons (FDR)  
+from statsmodels.stats.multitest import fdrcorrection  
+_, pvals_fdr = fdrcorrection(pvals.flatten())  
