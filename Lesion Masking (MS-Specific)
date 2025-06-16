@@ -1,0 +1,4 @@
+# Load lesion mask (e.g., binary T2-FLAIR lesion map)  
+lesion_mask = nib.load('path/to/lesion_mask.nii.gz').get_fdata()  
+atlas_masker = NiftiLabelsMasker(labels_img=atlas_filename, mask_img=lesion_mask, standardize=True)  
+time_series = atlas_masker.fit_transform(fmri_filenames)  
