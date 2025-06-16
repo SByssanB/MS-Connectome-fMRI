@@ -1,0 +1,3 @@
+# Keep top 10% strongest connections  
+threshold = np.percentile(correlation_matrix, 90)  
+thresholded_matrix = np.where(correlation_matrix > threshold, correlation_matrix, 0)  
